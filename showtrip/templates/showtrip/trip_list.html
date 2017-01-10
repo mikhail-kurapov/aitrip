@@ -1,0 +1,32 @@
+    {% extends 'showtrip/base.html' %}
+    
+
+    {% block content %}
+        {% for trip in object_list  %}
+            <div class="post">
+                <div class="date">
+                    {{ trip.src_id }}
+                </div>
+                 <h1><a href="{ % url 'trip_detail' pk=trip.pk % }">{{ trip.title }}</a></h1>
+                 <img src="{{ trip.thumbnail }}">
+                <p>{{ trip.title|linebreaksbr }}</p>
+            </div>
+        {% endfor %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if trips.has_previous %}
+                <a href="?page={{ trips.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ trips.number }} of {{ trips.paginator.num_pages }}.
+            </span>
+    
+            {% if trips.has_next %}
+                <a href="?page={{ trips.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+    
+    {% endblock content %}
+    

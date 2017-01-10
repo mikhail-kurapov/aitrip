@@ -1,0 +1,12 @@
+{% extends 'showtrip/base.html' %}
+
+    {% block content %}
+        <div class="post">
+            <a class="btn btn-default" href="{ % url 'post_edit' pk=post.pk % }"><span class="glyphicon glyphicon-pencil"></span></a>
+            <h1>{{ trip.title }}</h1>
+            <p>{{ trip.text|linebreaksbr }}</p>
+            {% for waipoint in trip.detail_set.all %}
+               <p>{{waipoint.title}}</p>
+           {% endfor %} 
+        </div>
+    {% endblock %}

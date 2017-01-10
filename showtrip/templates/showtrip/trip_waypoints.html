@@ -1,0 +1,9 @@
+    {% extends 'showtrip/base.html' %}
+    
+
+    {% block content %}
+        {% for waypoint in object_list  %}
+            <p>{{ waypoint.title }}</p>
+        {% endfor %}
+    {% endblock content %}
+    
