@@ -7,11 +7,16 @@ from .models import Trip, Waypoint
 
 class TripList(ListView):
     model = Trip
+    paginate_by = 10
     context_object_name = 'trip_list'
 
     def get_queryset(self):
-        return Trip.objects.filter(good_point_cnt__range=(5, 10))
-
+        context = Trip.objects.filter(isfullinfo='Y').order_by('duration_days')
+        #context['duration'] = Waypoint.objects.all()
+        return context
+#        return Trip.objects.filter(isfullinfo='Y').order_by('-score')
+#good_point_cnt__range=(5, 30)
+#id__in=[1461,1541]
 
 class TripDetail(DetailView):
 

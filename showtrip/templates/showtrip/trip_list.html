@@ -2,14 +2,17 @@
     
 
     {% block content %}
+        {% include 'showtrip/pagination.html' %}
+
         {% for trip in object_list  %}
             <div class="post">
                 <div class="date">
                     {{ trip.src_id }}
                 </div>
                  <h1><a href="{ % url 'trip_detail' pk=trip.pk % }">{{ trip.title }}</a></h1>
-                 <img src="{{ trip.thumbnail }}">
-                <p>{{ trip.title|linebreaksbr }}</p>
+                 <img src="{{ trip.thumbnail }}"><img src="{{ trip.thumbnail_new }}">
+                <p>{{ trip.started }}</p>
+                <p>{{ trip.duration_days }}</p>
             </div>
         {% endfor %}
     <div class="pagination">
